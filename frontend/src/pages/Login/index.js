@@ -1,11 +1,14 @@
 import { Box, Center, Text } from '@chakra-ui/react';
 import React from 'react';
+import { connect } from 'react-redux';
 import LoginForm from '../../component/forms/loginForm';
 import Layout from '../../component/Layout';
+import { authService } from '../../services';
 
-function Login() {
+function Login(props) {
+    
   const submitForm = (data) => {
-    console.log(data);
+    props.loginUser(data);
   };
 
   return (
@@ -26,4 +29,10 @@ function Login() {
   );
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginUser: (payload) => dispatch(authService.loginUser(payload)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Login);
