@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Badge, Box, HStack, Tag, Text } from "@chakra-ui/react";
+import { Badge, Box, HStack, Image, Tag, Text } from "@chakra-ui/react";
 
 import moment from "moment";
 
 function EventCard(props) {
   return (
     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+      <Image objectFit="cover" height="180px" width="100%" src='https://bit.ly/2Z4KKcF' alt={"property.imageAlt"} />
       <Box p="6">
         <Box display="flex" alignItems="baseline">
           {props.isVirtual ? (
@@ -49,7 +50,7 @@ function EventCard(props) {
             fontWeight="semibold"
             noOfLines={1}
           >
-            {moment(props.date).fromNow()}
+            {moment(props.date).format()}
           </Text>
         </HStack>
       </Box>

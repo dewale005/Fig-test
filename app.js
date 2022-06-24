@@ -7,11 +7,13 @@ const xss = require("xss-clean");
 const mongoSanitize = require("express-mongo-sanitize");
 const compression = require("compression");
 const cors = require("cors");
+const passport = require("passport");
 const { default: helmet } = require("helmet");
 const httpStatus = require("http-status");
 const logs = require("./src/config/logger");
 const config = require("./src/config/config");
 const morgan = require("./src/config/morgan");
+const { jwtStrategy } = require('./src/config/passport');
 const routes = require("./src/routes");
 const ApiError = require("./src/util/ApiError");
 const { errorConverter, errorHandler } = require("./src/middlewares/error");
@@ -50,6 +52,10 @@ app.use(compression());
 // enable cors
 app.use(cors());
 app.options("*", cors());
+
+// jwt authentication
+app.use(passport.initialize());
+passport.use("jwt", jwtStrategy);
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));

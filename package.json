@@ -10,6 +10,7 @@
     "server": "concurrently \"npm run prod\" \"npm run client\""
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
     "concurrently": "^7.2.2",
     "cookie-parser": "~1.4.4",
@@ -32,6 +33,7 @@
     "pm2": "^5.2.0",
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.4.0",
+    "validator": "^13.7.0",
     "winston": "^3.7.2",
     "xss-clean": "^0.1.1"
   },

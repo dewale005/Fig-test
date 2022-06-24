@@ -4,7 +4,7 @@ import { Box, Button, Container, HStack, IconButton, Image, Stack } from '@chakr
 import { HamburgerIcon } from '@chakra-ui/icons';
 
 import Logo from '../../assets/meomind-logo.png';
-import EventAddForm from '../forms';
+import EventAddForm from '../forms/addEventForm';
 import { eventService } from '../../services';
 import { connect } from 'react-redux';
 
@@ -16,7 +16,7 @@ function Navbar({ postEvent, fetchData }) {
       if (resp.success) {
         fetchData();
       }
-      onClose()
+      onClose();
     });
   };
 
@@ -24,20 +24,20 @@ function Navbar({ postEvent, fetchData }) {
     <Box p={5} shadow="md">
       <Container maxW="container.xl">
         <HStack direction={['column', 'row']} spacing="24px" justifyContent="space-between">
-          <Box>
-            <Image width="150px" height="60px" objectFit="contain" src={Logo} alt="Logo" />
+          <Box as="a" href='/'>
+              <Image width="150px" height="60px" objectFit="contain" src={Logo} alt="Logo" />
           </Box>
           <Box display={{ md: 'none', sm: 'flex' }}>
             <IconButton colorScheme="blue" aria-label="menu icon" size="lg" icon={<HamburgerIcon />} />
           </Box>
           <Box display={['none', 'none', 'flex']}>
             <Stack direction="row" spacing="25px">
-              <Button colorScheme="blue" variant="ghost">
-                Log In
-              </Button>
-              <Button colorScheme="blue" variant="ghost">
-                Sign Up
-              </Button>
+                <Button as="a" href='/login' colorScheme="blue" variant="ghost">
+                  Log In
+                </Button>
+                <Button as="a" href='/register' colorScheme="blue" variant="ghost">
+                  Sign Up
+                </Button>
               <Button onClick={onOpen} colorScheme="blue" variant="solid">
                 Add A New Event
               </Button>
