@@ -23,7 +23,7 @@ function RegisterForm(props) {
             <FormControl>
               <FormLabel htmlFor="username" fontSize="smaller">Username</FormLabel>
               <Input {...field} id="username" type="text" />
-              {errors.email && <FormHelperText color="red.600">Username is required</FormHelperText>}
+              {errors.email && <FormHelperText color="red.600">{errors.email.message}</FormHelperText>}
             </FormControl>
           )}
         />
@@ -32,7 +32,11 @@ function RegisterForm(props) {
           name="email"
           control={control}
           rules={{
-            required: true,
+            required: 'Email cannot be empty',
+            pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: 'A valid email is required'
+            }
           }}
           render={({ field }) => (
             <FormControl>

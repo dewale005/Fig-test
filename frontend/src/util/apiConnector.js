@@ -40,23 +40,18 @@ class Connect {
 
   post({ path, payload, action }) {
     return async (_dispatch) => {
-      const data = axios.post(`${path}`, payload, {
+      axios.post(`${path}`, payload, {
         headers: { "Content-Type": "multipart/form-data" },
     }
-      );
-      try {
-        data.then((resp) => {
-          if (action) {
-            _dispatch({ type: action, payload: resp.data });
-          }
-          _dispatch({ type: t.HANDLE_SUCCESS });
-        });
+      ).then((resp) => {
+        toast.success("Created Successfully")
         return { success: true };
-      } catch (error) {
-        toast.error(error.response.data.message)
+      }).catch((err) => {
+        toast.error(err.response.data.message)
         return { success: false };
+      });
+        
       }
-    };
   }
 }
 

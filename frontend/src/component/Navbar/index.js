@@ -14,11 +14,12 @@ function Navbar({ postEvent, fetchData }) {
 
   const getData = (data) => {
     postEvent(data).then((resp) => {
-      if (resp.success) {
-        fetchData();
-      }
-      onClose();
+      onClose()
+      setTimeout(() => {
+        fetchData()
+      }, 1000)
     });
+    
   };
 
   return (
