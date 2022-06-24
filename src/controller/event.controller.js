@@ -5,6 +5,9 @@ const catchAsync = require("../util/catchAsync");
 const { eventService } = require("../services");
 
 const createEvent = catchAsync(async (req, res) => {
+  if (req.file) {
+    req.body.thumbnail = req.file.path;
+  }
   const event = await eventService.createEvent(req.body);
   res.status(httpStatus.CREATED).send(event);
 });

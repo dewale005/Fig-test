@@ -21,11 +21,18 @@ const eventSchema = mongoose.Schema(
       type: String,
       require: true,
     },
-    isVirtual: {
-      type: Boolean,
+    thumbnail: {
+      type: String,
       require: true,
     },
-    date: {
+    timeZone: {
+      type: String,
+    },
+    startDate: {
+      type: Date,
+      require: true,
+    },
+    endDate: {
       type: Date,
       require: true,
     },

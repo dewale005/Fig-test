@@ -14,8 +14,9 @@ const createEvent = {
     description: Joi.string().required(),
     address: Joi.string().required(),
     category: Joi.string().required(),
-    isVirtual: Joi.boolean().default(false),
-    date: Joi.date().required(),
+    timezone: Joi.string().required(),
+    startDate: Joi.date().required(),
+    endDate: Joi.date().required(),
   }),
 };
 
@@ -35,8 +36,10 @@ const updateEvent = {
       description: Joi.string(),
       address: Joi.string(),
       category: Joi.string(),
-      isVirtual: Joi.boolean(),
-      date: Joi.date(),
+      thumbnail: Joi.any(),
+      timezone: Joi.string(),
+      startDate: Joi.date(),
+      endDate: Joi.date(),
     })
     .min(1),
 };

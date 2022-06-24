@@ -1,8 +1,11 @@
 {
     "cSpell.words": [
         "Chakra",
+        "fieldname",
         "middlewares",
         "persistor",
-        "prefs"
+        "prefs",
+        "semibold",
+        "toastify"
     ]
 }

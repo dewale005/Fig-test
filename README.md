@@ -25,6 +25,8 @@ To run this project run
   npm run server
 ```
 
+copy .env.sample and create .env and paste
+
 
 ## Authors
 

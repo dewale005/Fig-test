@@ -13,7 +13,7 @@ const httpStatus = require("http-status");
 const logs = require("./src/config/logger");
 const config = require("./src/config/config");
 const morgan = require("./src/config/morgan");
-const { jwtStrategy } = require('./src/config/passport');
+const { jwtStrategy } = require("./src/config/passport");
 const routes = require("./src/routes");
 const ApiError = require("./src/util/ApiError");
 const { errorConverter, errorHandler } = require("./src/middlewares/error");
@@ -30,6 +30,8 @@ app.use(helmet());
 
 // setting up logger
 app.use(logger("dev"));
+
+app.use("/upload", express.static("upload"));
 
 // connecting the database
 mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {

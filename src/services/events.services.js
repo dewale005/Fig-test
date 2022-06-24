@@ -4,11 +4,14 @@ const ApiError = require("../util/ApiError");
 
 /**
  * Create an event
- * @param {Object} userBody
+ * @param {Object} eventBody
  * @returns {Promise<Event>}
  */
 
 const createEvent = async (eventBody) => {
+  if (!eventBody.thumbnail) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "Image is required");
+  }
   if (await Event.isTitleTaken(eventBody.title)) {
     throw new ApiError(httpStatus.BAD_REQUEST, "Title already taken");
   }

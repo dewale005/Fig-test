@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import * as t from '../store/types';
 
 class Connect {
@@ -12,7 +13,7 @@ class Connect {
           return { success: true };
         })
         .catch((err) => {
-          console.log(err.response.data);
+        toast.error(err.response.data.message)
           return { success: false };
         });
     };
@@ -39,7 +40,10 @@ class Connect {
 
   post({ path, payload, action }) {
     return async (_dispatch) => {
-      const data = axios.post(`${path}`, payload);
+      const data = axios.post(`${path}`, payload, {
+        headers: { "Content-Type": "multipart/form-data" },
+    }
+      );
       try {
         data.then((resp) => {
           if (action) {
@@ -49,7 +53,7 @@ class Connect {
         });
         return { success: true };
       } catch (error) {
-        _dispatch({ type: t.HANDLE_ERROR, payload: 'an error occurred' });
+        toast.error(error.response.data.message)
         return { success: false };
       }
     };

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import Layout from '../../component/Layout';
 import EventCard from '../../component/EventCard';
 import { SimpleGrid } from '@chakra-ui/react';
@@ -14,21 +14,12 @@ function Home({ event, fetchData }) {
     <Layout>
       <SimpleGrid columns={{ sm: 1, md: 3 }} spacing="40px">
         {event.results.map((element, index) => (
-          <EventCard
-            key={index}
-            title={element.title}
-            description={element.description}
-            category={element.category}
-            date={element.date}
-            isVirtual={element.isVirtual}
-            address={element.address}
-          />
+          <EventCard key={index} {...element} />
         ))}
       </SimpleGrid>
     </Layout>
   );
 }
-
 
 const mapStateToProps = (state) => {
   return {
